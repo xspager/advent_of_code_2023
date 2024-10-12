@@ -11,6 +11,7 @@ int main()
     char *input_file_name = "input";
     int bytes_read;
     int first_number = -1, last_number = -1, calibration_value;
+    int i;
     int sum = 0;
 
     file = fopen(input_file_name, "r");
@@ -35,10 +36,12 @@ int main()
     while(!feof(file)){
         bytes_read = fread(buffer, sizeof(*buffer), BUFFER_SIZE, file);
 
-        for(int i = 0; i < bytes_read; i++){
+        for(i = 0; i < bytes_read; i++){
             if(buffer[i] == '\n') {
                 calibration_value = (first_number * 10) + last_number;
-                //printf("Calibration value: %i\n", calibration_value);
+                /*
+                printf("Calibration value: %i\n", calibration_value);
+                */
                 sum += calibration_value;
                 first_number = -1;
                 last_number = -1;
@@ -53,4 +56,5 @@ int main()
     free(buffer);
 
     printf("Calibration values sum = %i\n", sum);
+    return EXIT_SUCCESS;
 }
