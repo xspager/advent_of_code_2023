@@ -28,12 +28,8 @@ int main()
     }
 
     char *file, *line;
-    size_t file_length;
-    int line_length;
 
-    file = map_file(fd, &file_length);
-
-    printf("file size = %li\n", file_length);
+    file = map_file(fd);
 
     line = strtok(file, "\n");
 

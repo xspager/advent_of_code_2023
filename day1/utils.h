@@ -3,5 +3,5 @@
 
 #include <stdio.h>
 
-char *map_file(int fd, size_t *length);
+char *map_file(int fd);
 #endif

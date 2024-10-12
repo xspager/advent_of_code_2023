@@ -7,14 +7,13 @@
 
 #include "utils.h"
 
-char *map_file(int fd, size_t *length) {
+char *map_file(int fd) {
     void *mapped_file = NULL;
     size_t file_length = 0;
     struct stat statbuffer;
 
     fstat(fd, &statbuffer);
     file_length = statbuffer.st_size;
-    *length = file_length;
 
     mapped_file = mmap(NULL, file_length, PROT_READ|PROT_WRITE, MAP_PRIVATE, fd, 0);
 
