@@ -10,7 +10,7 @@
 
 #include "utils.h"
 
-#define PATTERN "([0-9]|one|two|three|four|five|six|seven|eight|nine|zero){1}.*(\\g<1>)"
+#define PATTERN "(?|([0-9]|one|two|three|four|five|six|seven|eight|nine|zero).*(\\g<1>)|(\\g<1>))"
 
 int main()
 {
@@ -70,12 +70,16 @@ int main()
         } else {
             first_number = string_number_to_int(buffer[1]);
         }
-        if (lenghtsptr[2] == 1) {
+
+        if (buffer[2] == NULL) {
+            last_number = first_number;
+        } else if (lenghtsptr[2] == 1) {
             last_number = buffer[2][0] - '0';
         } else {
             last_number = string_number_to_int(buffer[2]);
         }
-        /*printf("=> %i %i\n", first_number, last_number);*/
+
+       /*printf("=> %i %i\n", first_number, last_number);*/
 
         printf("%s\t\t\t%s %s => %i\n", line, buffer[1], buffer[2], ((first_number * 10) + last_number));
         sum += ((first_number * 10) + last_number);
