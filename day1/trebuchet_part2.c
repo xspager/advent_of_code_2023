@@ -53,8 +53,9 @@ int main()
     PCRE2_UCHAR8 **buffer;
     PCRE2_SIZE *lenghtsptr;
 
+
     while(line != NULL) {
-        printf("%s\n", line);
+        /*printf("%s\n", line);*/
         match_data = pcre2_match_data_create_from_pattern(re, NULL);
         subject = (PCRE2_SPTR) line;
         subject_len = strlen(line);
@@ -62,9 +63,22 @@ int main()
 
         assert(re >= 0);
         pcre2_substring_list_get(match_data, &buffer, &lenghtsptr);
-        printf("%i %i %i\n", lenghtsptr[0], lenghtsptr[1], lenghtsptr[2]);
-        printf("Group 1: %s\n", buffer[1]);
-        printf("Group 2: %s\n", buffer[2]);
+        /*printf("%s %s\n", buffer[1], buffer[2]);*/
+
+        if (lenghtsptr[1] == 1) {
+            first_number = buffer[1][0] - '0';
+        } else {
+            first_number = string_number_to_int(buffer[1]);
+        }
+        if (lenghtsptr[2] == 1) {
+            last_number = buffer[2][0] - '0';
+        } else {
+            last_number = string_number_to_int(buffer[2]);
+        }
+        /*printf("=> %i %i\n", first_number, last_number);*/
+
+        printf("%s\t\t\t%s %s => %i\n", line, buffer[1], buffer[2], ((first_number * 10) + last_number));
+        sum += ((first_number * 10) + last_number);
 
         line = strtok(NULL, "\n");
     }

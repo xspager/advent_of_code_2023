@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
 #include <sys/stat.h>
 #include <sys/mman.h>
@@ -22,4 +23,30 @@ char *map_file(int fd) {
         return NULL;
     }
     return (char *) mapped_file;
+}
+
+int string_number_to_int(char *string_number)
+{
+    char *value_for_string[10] = {
+        "zero",
+        "one",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+    };
+
+    int i;
+    int match;
+    for(i = 0; i < 10; i++) {
+        match = strcmp(value_for_string[i], string_number);
+        if (match == 0){
+            return i;
+        }
+    }
+    return -1;
 }
