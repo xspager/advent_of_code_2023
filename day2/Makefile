@@ -1,6 +1,6 @@
 ALL = cube_conundrum cube_conundrum_part2
 
-CFLAGS+= -std=c99 -Wall -g
+CFLAGS+= -std=c99 -Wall -O2 -mtune=native -g
 
 all: $(ALL)
 

@@ -81,7 +81,7 @@ int main()
 
        /*printf("=> %i %i\n", first_number, last_number);*/
 
-        printf("%s\t\t\t%s %s => %i\n", line, buffer[1], buffer[2], ((first_number * 10) + last_number));
+        /*printf("%s\t\t\t%s %s => %i\n", line, buffer[1], buffer[2], ((first_number * 10) + last_number));*/
         sum += ((first_number * 10) + last_number);
 
         line = strtok(NULL, "\n");

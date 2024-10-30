@@ -32,12 +32,27 @@ void update_totals(int *totals, int hand[3])
     }
 }
 
+#define FANCY
+
+#ifdef FANCY
 int mul(int *numbers, int length) {
     if (length == 0) return 0;
     if (length == 1) return numbers[0];
 
     return numbers[0] * mul(numbers + 1, length - 1);
 }
+#else
+int mul(int *numbers, int length) {
+    int tmp;
+
+    tmp = numbers[0];
+
+    for (int i = 1; i < length; i++) {
+        tmp *= numbers[i];
+    }
+    return tmp;
+}
+#endif
 
 int main()
 {
